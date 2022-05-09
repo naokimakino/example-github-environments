@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  job1:
+    name: Difference check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request
+    environment: production
+    env:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+    steps:
+      - name: difference check step
+        run: echo "difference check complete"
+
+  job2:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: github.event.push
+    environment: production
+    env:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+    steps:
+      - name: deploy step
+        run: echo "deployment complete"
