@@ -21,7 +21,6 @@ jobs:
   job2:
     name: Deploy
     runs-on: ubuntu-latest
-    if: github.event.push
     environment: production
     env:
       GITHUB_CONTEXT: ${{ toJSON(github) }}
